@@ -2,9 +2,22 @@
 
 Generate multiple-choice quizzes from any Wikipedia article using Gemini AI.
 
-![Tab 1: Generate Quiz](screenshots/tab1_generate.png)
-![Tab 2: Past Quizzes](screenshots/tab2_history.png)
+## Screenshots
 
+### Tab 1 — Generate Quiz
+![Generate Quiz](screenshots/tab1.png)
+
+### Tab 1 — Take Quiz Mode with Score
+![Take Quiz](screenshots/tab1_quiz.png)
+
+### Tab 2 — Past Quizzes History
+![Past Quizzes](screenshots/past_quizes.png)
+
+### Tab 2 — Quiz Detail Modal
+![Quiz Modal](screenshots/details_past_quizs.png)
+
+### API Documentation (Swagger)
+![Swagger API](screenshots/Screenshot 2026-05-21 061330.png)
 ---
 
 ## Features
