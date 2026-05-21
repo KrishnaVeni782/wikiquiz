@@ -1,0 +1,8 @@
+# netlify.toml — deploy frontend/index.html to Netlify
+[build]
+  publish = "frontend"
+
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200

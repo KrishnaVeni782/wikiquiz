@@ -1,0 +1,117 @@
+{
+  "id": 3,
+  "url": "https://en.wikipedia.org/wiki/Mahatma_Gandhi",
+  "title": "Mahatma Gandhi",
+  "summary": "Mohandas Karamchand Gandhi was an Indian lawyer, anti-colonial nationalist and political ethicist who employed nonviolent resistance to lead the successful campaign for India's independence from British rule. He inspired movements for civil rights and freedom across the world.",
+  "key_entities": {
+    "people": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhas Chandra Bose", "Muhammad Ali Jinnah", "Nathuram Godse"],
+    "organizations": ["Indian National Congress", "British Empire", "South African Indian Congress"],
+    "locations": ["India", "South Africa", "London", "Gujarat", "Dandi"]
+  },
+  "sections": [
+    "Early life and background",
+    "Civil rights movement in South Africa",
+    "Struggle for Indian independence",
+    "Salt March",
+    "Quit India Movement",
+    "Partition and assassination",
+    "Philosophy and legacy"
+  ],
+  "quiz": [
+    {
+      "question": "In which Indian state was Mahatma Gandhi born?",
+      "options": {
+        "A": "Maharashtra",
+        "B": "Gujarat",
+        "C": "Rajasthan",
+        "D": "Punjab"
+      },
+      "answer": "B",
+      "difficulty": "easy",
+      "explanation": "The article states Gandhi was born on 2 October 1869 in Porbandar, in present-day Gujarat."
+    },
+    {
+      "question": "What was the name of Gandhi's philosophy of nonviolent resistance?",
+      "options": {
+        "A": "Dharma",
+        "B": "Ahimsa only",
+        "C": "Satyagraha",
+        "D": "Swaraj"
+      },
+      "answer": "C",
+      "difficulty": "easy",
+      "explanation": "The article describes Satyagraha, meaning 'truth-force' or 'soul-force', as Gandhi's method of nonviolent civil disobedience."
+    },
+    {
+      "question": "Which famous act of civil disobedience did Gandhi lead in 1930 to protest the British salt tax?",
+      "options": {
+        "A": "Quit India March",
+        "B": "Dandi Salt March",
+        "C": "Amritsar Protest",
+        "D": "Champaran Satyagraha"
+      },
+      "answer": "B",
+      "difficulty": "medium",
+      "explanation": "The article details the 240-mile Dandi March in 1930, where Gandhi led protesters to the sea to make salt and defy the British salt monopoly."
+    },
+    {
+      "question": "Before returning to India, in which country did Gandhi first develop and use Satyagraha?",
+      "options": {
+        "A": "United Kingdom",
+        "B": "Kenya",
+        "C": "South Africa",
+        "D": "Burma"
+      },
+      "answer": "C",
+      "difficulty": "medium",
+      "explanation": "The article describes Gandhi's 21 years in South Africa where he fought discrimination and first practised nonviolent resistance."
+    },
+    {
+      "question": "Who assassinated Mahatma Gandhi on 30 January 1948?",
+      "options": {
+        "A": "Mohammad Ali Jinnah",
+        "B": "Sardar Patel",
+        "C": "Nathuram Godse",
+        "D": "Vinayak Savarkar"
+      },
+      "answer": "C",
+      "difficulty": "medium",
+      "explanation": "The article states Gandhi was shot and killed by Nathuram Godse, a Hindu nationalist who opposed Gandhi's policy of nonviolence toward Muslims."
+    },
+    {
+      "question": "What was the stated goal of the 1942 'Quit India' movement Gandhi launched?",
+      "options": {
+        "A": "Demanding a new Indian constitution",
+        "B": "Immediate end to British rule in India",
+        "C": "Autonomy for Indian provinces",
+        "D": "Independence for Pakistan only"
+      },
+      "answer": "B",
+      "difficulty": "hard",
+      "explanation": "The article explains the Quit India resolution of August 1942 demanded an immediate end to British rule as a precondition to Indian support during WWII."
+    },
+    {
+      "question": "Which legal profession did Gandhi train for in London before his civil rights work?",
+      "options": {
+        "A": "Judge",
+        "B": "Barrister",
+        "C": "Solicitor",
+        "D": "Notary"
+      },
+      "answer": "B",
+      "difficulty": "hard",
+      "explanation": "The article states Gandhi was called to the bar as a barrister after studying law in London at the Inner Temple."
+    }
+  ],
+  "related_topics": [
+    "Indian independence movement",
+    "Satyagraha",
+    "Salt March",
+    "Indian National Congress",
+    "Partition of India",
+    "Civil disobedience",
+    "Ahimsa",
+    "Jawaharlal Nehru"
+  ],
+  "created_at": "2025-01-15T11:30:00Z"
+}

@@ -1,0 +1,117 @@
+{
+  "id": 2,
+  "url": "https://en.wikipedia.org/wiki/Black_hole",
+  "title": "Black hole",
+  "summary": "A black hole is a region of spacetime where gravity is so strong that nothing, not even light or other electromagnetic waves, has enough speed to escape the event horizon. The theory of general relativity predicts that a sufficiently compact mass can deform spacetime to form a black hole. The boundary of no escape is called the event horizon.",
+  "key_entities": {
+    "people": ["Albert Einstein", "Stephen Hawking", "John Michell", "Karl Schwarzschild", "Roger Penrose"],
+    "organizations": ["NASA", "Event Horizon Telescope", "LIGO"],
+    "locations": ["Milky Way"]
+  },
+  "sections": [
+    "History",
+    "Properties and structure",
+    "Event horizon",
+    "Singularity",
+    "Formation and evolution",
+    "Hawking radiation",
+    "Observation"
+  ],
+  "quiz": [
+    {
+      "question": "What is the name of the boundary beyond which nothing can escape a black hole?",
+      "options": {
+        "A": "Photon sphere",
+        "B": "Schwarzschild radius",
+        "C": "Event horizon",
+        "D": "Singularity"
+      },
+      "answer": "C",
+      "difficulty": "easy",
+      "explanation": "The article defines the event horizon as the boundary of no return around a black hole."
+    },
+    {
+      "question": "Who first predicted the theoretical possibility of black holes using general relativity?",
+      "options": {
+        "A": "Isaac Newton",
+        "B": "Albert Einstein",
+        "C": "Niels Bohr",
+        "D": "Max Planck"
+      },
+      "answer": "B",
+      "difficulty": "easy",
+      "explanation": "The article states Einstein's theory of general relativity predicted that sufficiently compact mass deforms spacetime to form a black hole."
+    },
+    {
+      "question": "What type of radiation did Stephen Hawking theorize black holes emit?",
+      "options": {
+        "A": "Cherenkov radiation",
+        "B": "Hawking radiation",
+        "C": "Blackbody radiation",
+        "D": "Synchrotron radiation"
+      },
+      "answer": "B",
+      "difficulty": "medium",
+      "explanation": "The article credits Hawking with predicting that black holes emit thermal radiation, now called Hawking radiation, due to quantum effects near the event horizon."
+    },
+    {
+      "question": "What is the term for the infinitely dense point at the center of a black hole?",
+      "options": {
+        "A": "Neutron core",
+        "B": "Quasar",
+        "C": "Dark energy well",
+        "D": "Singularity"
+      },
+      "answer": "D",
+      "difficulty": "medium",
+      "explanation": "The article describes a gravitational singularity as the point of infinite density at the center of a black hole where known physics breaks down."
+    },
+    {
+      "question": "Which telescope collaboration produced the first image of a black hole's shadow in 2019?",
+      "options": {
+        "A": "Hubble Space Telescope",
+        "B": "James Webb Space Telescope",
+        "C": "Event Horizon Telescope",
+        "D": "LIGO Observatory"
+      },
+      "answer": "C",
+      "difficulty": "medium",
+      "explanation": "The article mentions the Event Horizon Telescope collaboration released the first image of the shadow of M87* in 2019."
+    },
+    {
+      "question": "Black holes formed from collapsing massive stars are classified as which type?",
+      "options": {
+        "A": "Primordial black holes",
+        "B": "Supermassive black holes",
+        "C": "Stellar black holes",
+        "D": "Quantum black holes"
+      },
+      "answer": "C",
+      "difficulty": "hard",
+      "explanation": "The article distinguishes stellar black holes (formed from collapsing stars of sufficient mass) from primordial and supermassive varieties."
+    },
+    {
+      "question": "According to the article, what happens to a black hole's temperature as it loses mass through Hawking radiation?",
+      "options": {
+        "A": "It stays constant",
+        "B": "It decreases",
+        "C": "It increases, accelerating evaporation",
+        "D": "Temperature is not related to mass"
+      },
+      "answer": "C",
+      "difficulty": "hard",
+      "explanation": "The article explains that as a black hole evaporates its mass decreases and its temperature rises, creating a runaway feedback that accelerates evaporation."
+    }
+  ],
+  "related_topics": [
+    "General relativity",
+    "Hawking radiation",
+    "Event Horizon Telescope",
+    "Neutron star",
+    "Gravitational wave",
+    "Supernova",
+    "Dark matter",
+    "Quantum gravity"
+  ],
+  "created_at": "2025-01-15T11:00:00Z"
+}

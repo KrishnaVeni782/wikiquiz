@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+*.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PostgreSQL dumps
+*.sql.gz
+*.dump
+
+# Node (if you add a JS build step later)
+node_modules/
+.next/

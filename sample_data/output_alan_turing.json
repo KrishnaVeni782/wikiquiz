@@ -1,0 +1,119 @@
+{
+  "id": 1,
+  "url": "https://en.wikipedia.org/wiki/Alan_Turing",
+  "title": "Alan Turing",
+  "summary": "Alan Mathison Turing was an English mathematician, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. Turing was highly influential in the development of theoretical computer science, providing a formalisation of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer.",
+  "key_entities": {
+    "people": ["Alan Turing", "Alonzo Church", "Max Newman", "Gordon Welchman", "Christopher Morcom"],
+    "organizations": ["University of Cambridge", "Bletchley Park", "Government Communications Headquarters", "National Physical Laboratory", "University of Manchester"],
+    "locations": ["United Kingdom", "London", "Cambridge", "Manchester", "Princeton"]
+  },
+  "sections": [
+    "Early life and education",
+    "University and work on computability",
+    "Cryptanalysis of the Enigma",
+    "Ace and the National Physical Laboratory",
+    "Manchester computers",
+    "Computing machinery and intelligence",
+    "Pattern formation and mathematical biology",
+    "Trial and legacy"
+  ],
+  "quiz": [
+    {
+      "question": "At which university did Alan Turing study as an undergraduate?",
+      "options": {
+        "A": "Oxford University",
+        "B": "Imperial College London",
+        "C": "King's College, Cambridge",
+        "D": "Princeton University"
+      },
+      "answer": "C",
+      "difficulty": "easy",
+      "explanation": "The article states Turing studied at King's College, Cambridge, where he graduated with first-class honours in mathematics."
+    },
+    {
+      "question": "What theoretical device did Turing propose as a model of computation?",
+      "options": {
+        "A": "The Analytical Engine",
+        "B": "The Turing Machine",
+        "C": "The Boolean Calculator",
+        "D": "The Difference Engine"
+      },
+      "answer": "B",
+      "difficulty": "easy",
+      "explanation": "The article states Turing provided a formalisation of the concepts of algorithm and computation with the Turing machine."
+    },
+    {
+      "question": "During World War II, Turing worked at which codebreaking centre?",
+      "options": {
+        "A": "GCHQ London",
+        "B": "National Physical Laboratory",
+        "C": "Fort Meade",
+        "D": "Bletchley Park"
+      },
+      "answer": "D",
+      "difficulty": "easy",
+      "explanation": "The article details Turing's pivotal work at Bletchley Park on breaking the German Enigma cipher."
+    },
+    {
+      "question": "What was the name of the test Turing proposed in his 1950 paper to evaluate machine intelligence?",
+      "options": {
+        "A": "The Consciousness Test",
+        "B": "The Imitation Game",
+        "C": "The Computational Check",
+        "D": "The Logic Exam"
+      },
+      "answer": "B",
+      "difficulty": "medium",
+      "explanation": "Turing's 1950 paper 'Computing Machinery and Intelligence' introduced what he called the Imitation Game, later known as the Turing Test."
+    },
+    {
+      "question": "Which German cipher machine's codes did Turing help break?",
+      "options": {
+        "A": "Lorenz",
+        "B": "SIGABA",
+        "C": "Enigma",
+        "D": "Purple"
+      },
+      "answer": "C",
+      "difficulty": "medium",
+      "explanation": "The article details Turing's cryptanalysis of the Enigma machine, used by Nazi Germany for military communications."
+    },
+    {
+      "question": "In 1952, Turing was prosecuted under Victorian-era law for which reason?",
+      "options": {
+        "A": "Espionage charges",
+        "B": "Gross indecency (homosexuality)",
+        "C": "Misuse of government computers",
+        "D": "Sharing classified research"
+      },
+      "answer": "B",
+      "difficulty": "medium",
+      "explanation": "The article states Turing was convicted of 'gross indecency' under the same law used against Oscar Wilde, for his relationship with Arnold Murray."
+    },
+    {
+      "question": "Turing's 1952 paper on morphogenesis proposed a mathematical model for which biological phenomenon?",
+      "options": {
+        "A": "DNA replication",
+        "B": "Neural firing patterns",
+        "C": "The chemical basis of pattern formation in animals",
+        "D": "Evolution of species through natural selection"
+      },
+      "answer": "C",
+      "difficulty": "hard",
+      "explanation": "His paper 'The Chemical Basis of Morphogenesis' proposed reaction-diffusion equations to explain how patterns like animal stripes and spots form."
+    }
+  ],
+  "related_topics": [
+    "Turing machine",
+    "Enigma machine",
+    "Cryptanalysis",
+    "Bletchley Park",
+    "Artificial intelligence",
+    "Computer science history",
+    "Alan Turing law",
+    "Morphogenesis",
+    "Computability theory"
+  ],
+  "created_at": "2025-01-15T10:30:00Z"
+}

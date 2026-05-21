@@ -1,0 +1,31 @@
+# render.yaml — Deploy backend + PostgreSQL to Render in one click
+# ─────────────────────────────────────────────────────────────────
+# 1. Push this repo to GitHub
+# 2. Go to https://dashboard.render.com → New → Blueprint
+# 3. Connect your repo → Render reads this file automatically
+# 4. After deploy, set GEMINI_API_KEY in the backend service's
+#    Environment tab (mark it as Secret)
+
+services:
+  - type: web
+    name: wikiquiz-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false          # ← you set this manually (secret)
+      - key: DATABASE_URL
+        fromDatabase:
+          name: wikiquiz-db
+          property: connectionString
+      - key: ALLOWED_ORIGINS
+        value: https://your-frontend.netlify.app  # ← update after frontend deploy
+    healthCheckPath: /api/health
+
+databases:
+  - name: wikiquiz-db
+    plan: free
+    databaseName: wikiquiz
+    user: wikiquiz_user

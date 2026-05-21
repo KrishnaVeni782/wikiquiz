@@ -1,0 +1,109 @@
+===============================================================
+WikiQuiz – LangChain Prompt Templates
+Saved for submission as required by the assignment spec.
+===============================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROMPT 1 – QUIZ GENERATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+System role: You are an expert quiz writer.
+
+Template variables: {title}, {sections}, {article_text}, {num_questions}
+
+─── FULL TEMPLATE ──────────────────────────────────────────
+
+You are an expert quiz writer. Your task is to create a high-quality multiple-choice quiz
+based ONLY on the Wikipedia article content provided below.
+Do NOT use any external knowledge – every question must be answerable from the text.
+
+ARTICLE TITLE: {title}
+
+ARTICLE SECTIONS: {sections}
+
+ARTICLE TEXT:
+{article_text}
+
+─────────────────────────────────────────────
+INSTRUCTIONS
+─────────────────────────────────────────────
+1. Generate EXACTLY {num_questions} multiple-choice questions.
+2. Each question must have:
+   - "question": a clear, specific question string
+   - "options": an object with keys "A", "B", "C", "D" (four distinct options)
+   - "answer": the key of the correct option ("A", "B", "C", or "D")
+   - "difficulty": one of "easy", "medium", or "hard"
+   - "explanation": one sentence explaining why the answer is correct,
+     quoting or paraphrasing the relevant part of the article
+
+3. Distribute difficulty: roughly 2 easy, 3–4 medium, 2–3 hard questions.
+4. Do NOT repeat questions or options.
+5. Wrong options (distractors) must be plausible but clearly incorrect
+   based on the article.
+6. Base questions on different sections of the article for variety.
+
+─────────────────────────────────────────────
+OUTPUT FORMAT  (strict JSON – nothing else)
+─────────────────────────────────────────────
+Return a single JSON array. No markdown fences, no commentary, no extra keys.
+Example of ONE element:
+{
+  "question": "Where did Alan Turing study as an undergraduate?",
+  "options": {
+    "A": "Oxford University",
+    "B": "Cambridge University",
+    "C": "Harvard University",
+    "D": "Imperial College London"
+  },
+  "answer": "B",
+  "difficulty": "easy",
+  "explanation": "The article states Turing studied at King's College, Cambridge."
+}
+
+Now output the full JSON array of {num_questions} questions:
+
+─── DESIGN RATIONALE ───────────────────────────────────────
+
+• "based ONLY on the article" → minimises hallucination; forces the model to
+  stay grounded in the provided text.
+• Explicit difficulty distribution → produces diverse quiz content.
+• "Return a single JSON array. No markdown fences." → enables reliable
+  programmatic parsing without complex cleaning logic.
+• Temperature set to 0.4 in ChatGoogleGenerativeAI → balances creativity
+  (varied distractors) with factual correctness.
+• article_text capped at 15,000 characters → stays within Gemini context
+  limits while covering the full article body.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROMPT 2 – RELATED TOPICS GENERATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Template variables: {title}, {existing_topics}, {summary}
+
+─── FULL TEMPLATE ──────────────────────────────────────────
+
+You are a helpful Wikipedia editor. Given the following article title and its key topics,
+suggest up to 8 related Wikipedia article titles a reader would find interesting.
+
+ARTICLE TITLE: {title}
+EXISTING RELATED TOPICS FROM PAGE: {existing_topics}
+ARTICLE SUMMARY: {summary}
+
+Rules:
+- Suggest ONLY real Wikipedia article titles (use proper capitalisation).
+- Do NOT repeat topics already in EXISTING RELATED TOPICS.
+- Output ONLY a JSON array of strings, no markdown, no explanation.
+
+Example: ["Enigma machine", "Cryptanalysis", "Bletchley Park"]
+
+Output:
+
+─── DESIGN RATIONALE ───────────────────────────────────────
+
+• Passes existing scraped topics as context → prevents duplicates and
+  anchors the model to the subject domain.
+• "ONLY real Wikipedia article titles" → reduces hallucinated suggestions
+  that would produce dead links.
+• JSON-only output → easy to merge with scraped topics list.
+• Falls back to scraped topics on any error → system is resilient.

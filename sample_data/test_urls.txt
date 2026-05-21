@@ -1,0 +1,16 @@
+# Sample Wikipedia URLs for Testing
+# ─────────────────────────────────────────────────────────────────────────────
+# Use these with POST /api/generate to demonstrate the system.
+# Corresponding JSON outputs are in output_alan_turing.json etc.
+
+1. https://en.wikipedia.org/wiki/Alan_Turing
+   - Good coverage: early life, WWII, computing theory, legacy
+   - Expected: 7 questions spanning easy → hard
+
+2. https://en.wikipedia.org/wiki/Black_hole
+   - Science article; tests entity extraction for physics concepts
+   - Expected: 7 questions on formation, types, Hawking radiation
+
+3. https://en.wikipedia.org/wiki/Mahatma_Gandhi
+   - Biography; tests people/org/location entity extraction
+   - Expected: 7 questions on independence movement, philosophy, assassination
