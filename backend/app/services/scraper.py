@@ -1,38 +1,18 @@
-"""
-app/services/scraper.py
-────────────────────────
-Scrapes a Wikipedia article URL with requests + BeautifulSoup.
-
-Extracts:
-  - title          – the article's <h1> heading
-  - summary        – first two non-empty paragraphs (lead section)
-  - sections       – all <h2> / <h3> headings (table of contents)
-  - key_entities   – naive NER: capitalised tokens grouped into
-                     people / organizations / locations using
-                     keyword heuristics (no heavy NLP dependency)
-  - related_topics – "See also" links from the Wikipedia article
-  - raw_text       – full visible text (for LLM context)
-"""
-
 import re
 import logging
 from typing import Any
-
 import requests
 from bs4 import BeautifulSoup
-
 logger = logging.getLogger(__name__)
 
-# ── Constants ────────────────────────────────────────────────────────────────
 HEADERS = {
     "User-Agent": (
         "WikiQuizBot/1.0 (educational project; "
         "contact: wikiquizbot@example.com)"
     )
 }
-REQUEST_TIMEOUT = 15  # seconds
+REQUEST_TIMEOUT = 15 
 
-# Keyword hints used for lightweight entity classification
 PEOPLE_HINTS    = {"born", "died", "mathematician", "scientist", "engineer",
                    "philosopher", "politician", "author", "artist", "professor",
                    "director", "founder", "president", "minister", "general"}
@@ -45,15 +25,9 @@ LOC_HINTS       = {"kingdom", "states", "country", "city", "town", "republic",
                    "england", "france", "germany", "india", "china", "japan",
                    "london", "paris", "berlin", "washington", "york", "cambridge"}
 
-
-# ── Helpers ──────────────────────────────────────────────────────────────────
-
 def _clean_text(text: str) -> str:
-    """Collapse whitespace and strip citation brackets like [1], [note 2]."""
-    text = re.sub(r"\[\d+\]|\[note \d+\]|\[a\]|\[b\]", "", text)
+   text = re.sub(r"\[\d+\]|\[note \d+\]|\[a\]|\[b\]", "", text)
     return re.sub(r"\s+", " ", text).strip()
-
-
 def _classify_entity(name: str) -> str:
     """Return 'people' | 'organizations' | 'locations' | 'other'."""
     lower = name.lower()
@@ -61,7 +35,6 @@ def _classify_entity(name: str) -> str:
         return "locations"
     if any(h in lower for h in ORG_HINTS):
         return "organizations"
-    # Multi-word, each word capitalised → likely a person name
     parts = name.split()
     if len(parts) >= 2 and all(p[0].isupper() for p in parts if p):
         return "people"
@@ -69,16 +42,8 @@ def _classify_entity(name: str) -> str:
 
 
 def _extract_entities(soup: BeautifulSoup) -> dict[str, list[str]]:
-    """
-    Extract named entities from the article body using simple heuristics:
-      1. Grab all <b> tags in the first few sections (Wikipedia bolds key terms).
-      2. Pull <a> hrefs that look like /wiki/Person_Name patterns.
-      3. Deduplicate and classify.
-    """
-    entities: dict[str, list[str]] = {"people": [], "organizations": [], "locations": []}
-
-    # Bold tags (first ~5 000 chars worth of content)
-    body_div = soup.find("div", {"id": "mw-content-text"})
+   entities: dict[str, list[str]] = {"people": [], "organizations": [], "locations": []}
+  body_div = soup.find("div", {"id": "mw-content-text"})
     if not body_div:
         return entities
 
@@ -137,28 +102,12 @@ def _extract_related_topics(soup: BeautifulSoup) -> list[str]:
                         topics.append(text)
     return topics[:10]
 
-
-# ── Main scrape function ─────────────────────────────────────────────────────
-
 def scrape_wikipedia(url: str) -> dict[str, Any]:
-    """
-    Fetch and parse a Wikipedia article.
-
-    Returns a dict with keys:
-        title, summary, sections, key_entities, related_topics, raw_text
-
-    Raises:
-        ValueError  – if the URL is not a Wikipedia article URL
-        RuntimeError – on network / parse failures
-    """
-    # ── Validate URL ──────────────────────────────────────────────────────
     if "wikipedia.org/wiki/" not in url:
         raise ValueError(
             f"Not a valid Wikipedia article URL: {url!r}. "
             "Expected a URL like https://en.wikipedia.org/wiki/Alan_Turing"
         )
-
-    # ── Fetch ─────────────────────────────────────────────────────────────
     logger.info("Fetching Wikipedia URL: %s", url)
     try:
         resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
@@ -169,15 +118,9 @@ def scrape_wikipedia(url: str) -> dict[str, Any]:
         raise RuntimeError(f"HTTP {exc.response.status_code} fetching {url}: {exc}")
     except requests.exceptions.RequestException as exc:
         raise RuntimeError(f"Network error fetching {url}: {exc}")
-
-    # ── Parse ─────────────────────────────────────────────────────────────
     soup = BeautifulSoup(resp.text, "lxml")
-
-    # Title
     title_tag = soup.find("h1", {"id": "firstHeading"}) or soup.find("h1")
     title = _clean_text(title_tag.get_text()) if title_tag else "Unknown Title"
-
-    # Summary – first 2 substantial paragraphs from the lead section
     content_div = soup.find("div", {"id": "mw-content-text"})
     summary_parts: list[str] = []
     if content_div:
@@ -188,8 +131,6 @@ def scrape_wikipedia(url: str) -> dict[str, Any]:
             if len(summary_parts) >= 2:
                 break
     summary = " ".join(summary_parts) or "No summary available."
-
-    # Sections – all h2 / h3 headings (skip meta headings)
     skip_headings = {
         "See also", "References", "Further reading",
         "External links", "Notes", "Citations", "Bibliography"
@@ -200,22 +141,14 @@ def scrape_wikipedia(url: str) -> dict[str, Any]:
         text = _clean_text(span.get_text() if span else heading.get_text())
         if text and text not in skip_headings:
             sections.append(text)
-
-    # Key entities
     key_entities = _extract_entities(soup)
-
-    # Related topics
     related_topics = _extract_related_topics(soup)
-
-    # Raw text – all paragraphs joined (used as LLM context)
     all_paragraphs = [
         _clean_text(p.get_text())
         for p in (content_div.find_all("p") if content_div else [])
         if len(_clean_text(p.get_text())) > 40
     ]
     raw_text = "\n\n".join(all_paragraphs)
-
-    # ── Warn if thin article ──────────────────────────────────────────────
     if len(raw_text) < 500:
         logger.warning("Article text is very short (%d chars). Quiz quality may be low.", len(raw_text))
 
