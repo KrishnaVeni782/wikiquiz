@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Tokens ─────────────────────────────────────────────────────────── */
     :root {
       --bg:          #0b0e14;
       --surface:     #12161f;
@@ -27,8 +26,6 @@
       --radius-sm:    8px;
       --transition:   0.22s cubic-bezier(.4,0,.2,1);
     }
-
-    /* ── Reset ──────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -39,19 +36,13 @@
       line-height: 1.65;
       min-height: 100vh;
     }
-
-    /* ── Noise texture overlay ───────────────────────────────────────────── */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       opacity: 0.35;
     }
-
-    /* ── Layout wrapper ─────────────────────────────────────────────────── */
     .app { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
-
-    /* ── Header ─────────────────────────────────────────────────────────── */
     header {
       padding: 48px 0 32px;
       display: flex; align-items: flex-end; gap: 16px;
@@ -73,8 +64,6 @@
       -webkit-text-fill-color: transparent;
     }
     .header-text p { color: var(--muted); font-size: 13px; margin-top: 2px; }
-
-    /* ── Tabs ───────────────────────────────────────────────────────────── */
     .tabs {
       display: flex; gap: 4px;
       background: var(--surface); border: 1px solid var(--border);
@@ -94,16 +83,12 @@
       box-shadow: 0 1px 8px rgba(0,0,0,.4);
     }
     .tab-btn:hover:not(.active) { color: var(--text); }
-
-    /* ── Panel ──────────────────────────────────────────────────────────── */
     .panel { display: none; }
     .panel.active { display: block; animation: fadeUp .3s ease; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    /* ── Card ───────────────────────────────────────────────────────────── */
     .card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 24px;
@@ -118,8 +103,6 @@
       width: 6px; height: 6px; border-radius: 50%;
       background: var(--accent);
     }
-
-    /* ── Form ───────────────────────────────────────────────────────────── */
     .form-group { margin-bottom: 16px; }
     .form-group label {
       display: block; font-size: 12px; font-weight: 500;
@@ -150,8 +133,6 @@
     .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .btn-primary:active { transform: translateY(0); }
     .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-    /* ── Loader ─────────────────────────────────────────────────────────── */
     .loader-wrap {
       display: flex; flex-direction: column; align-items: center;
       gap: 16px; padding: 48px 0; color: var(--muted);
@@ -166,16 +147,12 @@
     .loader-steps { font-size: 13px; text-align: center; }
     .loader-step { opacity: 0; animation: fadeStep 0.5s ease forwards; }
     @keyframes fadeStep { to { opacity: 1; } }
-
-    /* ── Error banner ───────────────────────────────────────────────────── */
     .error-banner {
       background: rgba(248,113,113,.1); border: 1px solid rgba(248,113,113,.3);
       border-radius: var(--radius-sm); padding: 14px 16px;
       color: var(--danger); font-size: 14px; margin-bottom: 20px;
       display: none; animation: fadeUp .25s ease;
     }
-
-    /* ── Article meta ───────────────────────────────────────────────────── */
     .article-hero {
       background: linear-gradient(135deg, var(--surface2) 0%, rgba(74,222,128,.05) 100%);
       border: 1px solid var(--border); border-radius: var(--radius);
@@ -194,8 +171,6 @@
       word-break: break-all;
     }
     .article-summary { color: #b0bacf; font-size: 14px; line-height: 1.7; }
-
-    /* ── Tags ───────────────────────────────────────────────────────────── */
     .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
     .tag {
       padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 500;
@@ -206,8 +181,7 @@
     .tag-loc     { background: rgba(167,139,250,.1); border-color: rgba(167,139,250,.3); color: #a78bfa; }
     .tag-topic   { background: rgba(74,222,128,.08); border-color: rgba(74,222,128,.3);  color: var(--accent); }
     .tag-section { background: var(--surface2); border-color: var(--border); color: var(--muted); font-family: var(--font-mono); font-size: 11px; }
-
-    /* ── Quiz question cards ─────────────────────────────────────────────── */
+    
     .quiz-header {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 16px;
@@ -304,8 +278,6 @@
       margin-bottom: 16px; display: none;
     }
     .score-banner .big-score { font-size: 40px; font-weight: 800; color: var(--accent); }
-
-    /* ── History table (Tab 2) ───────────────────────────────────────────── */
     .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
     table { width: 100%; border-collapse: collapse; }
     thead { background: var(--surface2); }
@@ -333,7 +305,6 @@
     }
     .empty-state .emoji { font-size: 36px; margin-bottom: 12px; }
 
-    /* ── Modal ──────────────────────────────────────────────────────────── */
     .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 100;
       background: rgba(0,0,0,.7); backdrop-filter: blur(4px);
@@ -360,7 +331,6 @@
     }
     .modal-close:hover { background: var(--border); color: var(--text); }
 
-    /* ── Misc ───────────────────────────────────────────────────────────── */
     .section-label {
       font-family: var(--font-display); font-size: 11px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted);
@@ -373,8 +343,6 @@
 </head>
 <body>
 <div class="app">
-
-  <!-- ── Header ─────────────────────────────────────────────────────────── -->
   <header>
     <div class="logo-mark">W</div>
     <div class="header-text">
@@ -383,7 +351,6 @@
     </div>
   </header>
 
-  <!-- ── Tabs ───────────────────────────────────────────────────────────── -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('generate')">⚡ Generate Quiz</button>
     <button class="tab-btn" onclick="switchTab('history')">🕘 Past Quizzes</button>
@@ -460,16 +427,10 @@
 
 
 <script>
-/* ─────────────────────────────────────────────────────────────────────────────
-   CONFIG – change API_BASE to your deployed backend URL when in production
-───────────────────────────────────────────────────────────────────────────── */
-const API_BASE = 'http://localhost:8000/api';
 
-/* ── State ─────────────────────────────────────────────────────────────────── */
+const API_BASE = 'http://localhost:8000/api';
 let quizMode = 'view';  // 'view' | 'take'
 let selectedAnswers = {};  // questionIndex -> optionKey
-
-/* ── Tab switching ─────────────────────────────────────────────────────────── */
 function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach((b, i) =>
     b.classList.toggle('active', (tab === 'generate' ? 0 : 1) === i)
@@ -478,8 +439,6 @@ function switchTab(tab) {
   document.getElementById('tab-' + tab).classList.add('active');
   if (tab === 'history') loadHistory();
 }
-
-/* ── Generate quiz ─────────────────────────────────────────────────────────── */
 async function handleGenerate() {
   const url = document.getElementById('wiki-url').value.trim();
   const numQ = parseInt(document.getElementById('num-q').value);
@@ -531,7 +490,6 @@ async function handleGenerate() {
   }
 }
 
-/* ── Render quiz result ────────────────────────────────────────────────────── */
 function renderResult(data, container, isModal) {
   const ke = data.key_entities || {};
   const people = (ke.people || []).map(p => `<span class="tag tag-person">${esc(p)}</span>`).join('');
@@ -587,7 +545,6 @@ function renderResult(data, container, isModal) {
   window[`${prefix}_quizData`] = data.quiz;
 }
 
-/* ── Render questions ──────────────────────────────────────────────────────── */
 function renderQuestions(questions, prefix, mode) {
   const container = document.getElementById(`${prefix}-questions`);
   container.innerHTML = questions.map((q, i) => {
@@ -612,7 +569,6 @@ function renderQuestions(questions, prefix, mode) {
   }).join('');
 }
 
-/* ── Quiz mode toggle ──────────────────────────────────────────────────────── */
 function setMode(mode, prefix) {
   quizMode = mode;
   selectedAnswers = {};
@@ -635,7 +591,6 @@ function setMode(mode, prefix) {
   });
 }
 
-/* ── Option selection ──────────────────────────────────────────────────────── */
 function selectOption(qIdx, key, prefix) {
   if (quizMode === 'view') return;
   // Deselect others
@@ -648,7 +603,7 @@ function selectOption(qIdx, key, prefix) {
   if (chosen) chosen.classList.add('selected');
 }
 
-/* ── Submit quiz ───────────────────────────────────────────────────────────── */
+
 function submitQuiz(prefix) {
   const questions = window[`${prefix}_quizData`] || [];
   let correct = 0;
@@ -677,8 +632,7 @@ function submitQuiz(prefix) {
   banner.style.display = 'block';
   document.getElementById(`${prefix}-submit-btn`).style.display = 'none';
 }
-
-/* ── History (Tab 2) ─────────────────────────────────────────────────────── */
+/
 async function loadHistory() {
   const body = document.getElementById('history-body');
   body.innerHTML = '<div class="empty-state"><div class="spinner" style="margin:0 auto"></div></div>';
@@ -717,8 +671,6 @@ async function loadHistory() {
     body.innerHTML = `<div class="empty-state" style="color:var(--danger)">⚠ Failed to load history: ${esc(err.message)}</div>`;
   }
 }
-
-/* ── Modal ─────────────────────────────────────────────────────────────────── */
 async function openModal(articleId) {
   const overlay = document.getElementById('modal-overlay');
   const result  = document.getElementById('modal-result');
@@ -749,8 +701,6 @@ function handleOverlayClick(e) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-/* ── UI helpers ────────────────────────────────────────────────────────────── */
 function setLoading(on) {
   document.getElementById('loader').style.display = on ? 'flex' : 'none';
   document.getElementById('generate-btn').disabled = on;
@@ -797,14 +747,9 @@ function formatDate(iso) {
   const d = new Date(iso);
   return d.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
 }
-
-/* ── Enter key support ─────────────────────────────────────────────────────── */
 document.getElementById('wiki-url').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleGenerate();
 });
-
-/* ── Load history on mount ─────────────────────────────────────────────────── */
-// (history tab will load when first switched to)
 </script>
 </body>
 </html>
