@@ -1,18 +1,7 @@
-"""
-app/schemas/schemas.py
-───────────────────────
-Pydantic v2 models for request validation and response serialisation.
-"""
 from __future__ import annotations
-
 from datetime import datetime
 from typing import Any
-
 from pydantic import BaseModel, HttpUrl, field_validator
-
-
-# ── Request ───────────────────────────────────────────────────────────────────
-
 class GenerateQuizRequest(BaseModel):
     url: str
     num_questions: int = 7    # default 7; client can request 5–10
@@ -31,28 +20,16 @@ class GenerateQuizRequest(BaseModel):
                 "(e.g. https://en.wikipedia.org/wiki/Alan_Turing)"
             )
         return v.strip()
-
-
-# ── Question sub-schema ───────────────────────────────────────────────────────
-
 class QuestionOut(BaseModel):
     question:    str
     options:     dict[str, str]   # {"A": ..., "B": ..., "C": ..., "D": ...}
     answer:      str
     difficulty:  str
     explanation: str
-
-
-# ── Key entities sub-schema ───────────────────────────────────────────────────
-
 class KeyEntitiesOut(BaseModel):
     people:        list[str] = []
     organizations: list[str] = []
     locations:     list[str] = []
-
-
-# ── Full article + quiz response ──────────────────────────────────────────────
-
 class ArticleQuizOut(BaseModel):
     id:             int
     url:            str
@@ -65,21 +42,12 @@ class ArticleQuizOut(BaseModel):
     created_at:     datetime
 
     model_config = {"from_attributes": True}
-
-
-# ── History list item (Tab 2 table row) ──────────────────────────────────────
-
 class ArticleListItem(BaseModel):
     id:         int
     url:        str
     title:      str
     created_at: datetime
     num_questions: int = 0
-
     model_config = {"from_attributes": True}
-
-
-# ── Error response ────────────────────────────────────────────────────────────
-
 class ErrorResponse(BaseModel):
     detail: str
