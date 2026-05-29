@@ -1,19 +1,9 @@
-"""
-app/models/models.py
-─────────────────────
-SQLAlchemy ORM table definitions.
-JSON columns are stored as PostgreSQL JSONB so they're queryable.
-"""
 from datetime import datetime
-
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-
 from app.db.database import Base
-
-
 class Article(Base):
     __tablename__ = "articles"
 
@@ -21,18 +11,14 @@ class Article(Base):
     url             = Column(Text, unique=True, nullable=False, index=True)
     title           = Column(Text, nullable=False)
     summary         = Column(Text)
-    sections        = Column(JSONB, default=list)   # ["Early life", "WWII", ...]
-    key_entities    = Column(JSONB, default=dict)   # {people:[...], orgs:[...], locs:[...]}
-    related_topics  = Column(JSONB, default=list)   # ["Cryptography", ...]
-    raw_text        = Column(Text)                  # full scraped text (bonus storage)
+    sections        = Column(JSONB, default=list)   
+    key_entities    = Column(JSONB, default=dict)   
+    related_topics  = Column(JSONB, default=list)   
+    raw_text        = Column(Text)                  
     created_at      = Column(DateTime(timezone=True), server_default=func.now())
     updated_at      = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
-
-    # One article → one quiz (we regenerate in place on duplicate URL requests)
     quiz            = relationship("Quiz", back_populates="article", uselist=False,
                                    cascade="all, delete-orphan")
-
-
 class Quiz(Base):
     __tablename__ = "quizzes"
 
